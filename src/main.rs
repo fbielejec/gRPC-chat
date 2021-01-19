@@ -72,7 +72,7 @@ impl Chat for ChatService {
 
         let client = redis::Client::open(redis_node.to_owned ()).unwrap();
         let mut redis_pub : redis::aio::Connection = client.get_async_connection().await.unwrap();
-        // TODO: Arc Mutex
+        // TODO: Arc Mutex to obtain lock and unsubscribe when client disconnects
         let mut redis_sub = client.get_async_connection().await.unwrap().into_pubsub();
 
         redis_sub.subscribe(&user_id).await.unwrap();
@@ -89,6 +89,8 @@ impl Chat for ChatService {
                                                 message: payload};
 
                 // handle failed send
+                // TODO : we should close this thread as soon as client disconnects
+                // else it occupies resources until next message is sent
                 match tx.send ( Ok (chat_message) ).await {
                     Ok (_) => {
                         debug!("Succesfully sent message to gRPC client: {}", &from);

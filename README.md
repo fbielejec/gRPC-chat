@@ -1,6 +1,6 @@
 # gRPC-redis-pubsub
 
-ping-pong + chat server using gRPC and proto3 with Rust. 
+ping-pong + chat server using gRPC and proto3 with Rust.
 Chat server uses redis pub-sub for dispatching messages to clients connected to different instances of the service.
 
 ## start backend service (redis)
@@ -42,5 +42,3 @@ Invoke the ping-pong endpoint:
 ```bash
 grpcurl -plaintext -import-path ./proto -proto pingpong.proto 127.0.0.1:3001 pingpong.PingPong/SendPing
 ```
-
-

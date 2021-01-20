@@ -1,2 +1,2 @@
 tonic::include_proto!("pingpong");
-tonic::include_proto!("chat");
+// tonic::include_proto!("chat");

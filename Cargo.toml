@@ -12,7 +12,7 @@ futures = { version = "0.3", default-features = false, features = ["alloc"] }
 log = "^0.4"
 prost = "0.7"
 prost-types = "0.7"
-quick-error = "2.0.0"
+# quick-error = "2.0.0"
 redis = { version = "0.19.0", features = ["cluster", "tokio-comp"] }
 tokio = { version = "1.0", features = ["rt-multi-thread", "time", "fs", "macros", "net"] }
 tokio-stream = { version =  "0.1", features = ["net"] }

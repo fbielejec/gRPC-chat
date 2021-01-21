@@ -20,9 +20,9 @@ cargo watch -x "run -- --bin server"
 *Streaming* : connect as users with id "filip" and "juan" (using "from" header), read messages from stdin and stream them to the connected clients:
 
 ```bash
-grpcurl -plaintext -proto proto/chat.proto -d @ -H 'from: filip' 127.0.0.1:3001 chat.Chat/Chat
+grpcurl -plaintext -proto proto/chat.proto -d @ -H 'from: filip' localhost:50051 chat.Chat/Chat
 
-grpcurl -plaintext -proto proto/chat.proto -d @ -H 'from: juan' 127.0.0.1:3001 chat.Chat/Chat
+grpcurl -plaintext -proto proto/chat.proto -d @ -H 'from: juan' localhost:50051 chat.Chat/Chat
 ```
 
 Messages are routed using the "to" field, e.g. this message will end up in the stdout of the user "filip" when sent form stdin of user "juan":
@@ -34,11 +34,11 @@ Messages are routed using the "to" field, e.g. this message will end up in the s
 *Streaming* : send one message from user id "juan" to the chat endpoint, message gets picked up by the user "filip":
 
 ```bash
-grpcurl -plaintext -import-path ./proto -proto chat.proto -H 'from: juan' -d '{"to": "filip", "message": "hello!"}' 127.0.0.1:3001 chat.Chat/Chat
+grpcurl -plaintext -import-path ./proto -proto chat.proto -H 'from: juan' -d '{"to": "filip", "message": "hello!"}' localhost:50051 chat.Chat/Chat
 ```
 
 Invoke the ping-pong endpoint:
 
 ```bash
-grpcurl -plaintext -import-path ./proto -proto pingpong.proto 127.0.0.1:3001 pingpong.PingPong/SendPing
+grpcurl -plaintext -import-path ./proto -proto pingpong.proto localhost:50051 pingpong.PingPong/SendPing
 ```

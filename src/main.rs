@@ -35,8 +35,8 @@ struct Config {
 async fn main() -> Result<(), anyhow::Error> {
 
     let config = Config {
-        host: get_env_var ("HOST", Some (String::from ("127.0.0.1")))?,
-        port: get_env_var ("PORT", Some (String::from ("3001")))?.parse::<u32>()?,
+        host: get_env_var ("HOST", Some (String::from ("[::]")))?,
+        port: get_env_var ("PORT", Some (String::from ("50051")))?.parse::<u32>()?,
         log_level: get_env_var ("LOGGING_LEVEL", Some (String::from ("info")))?,
     };
 
